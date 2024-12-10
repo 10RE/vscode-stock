@@ -7,9 +7,13 @@ import { Stock, StockConfig } from './stockResource';
 
 
 const httpRequest = async (url: string): Promise<any> => {
+  const request_option = {
+    headers: {
+      referer: 'http://finance.sina.com.cn',
+    },
+  };
   return new Promise((resolve, reject) => {
-    
-    https.get(url, res => {
+    https.get(url, request_option, res => {
       let chunks: Array<Buffer> = [];
       res.on('data', chunk => chunks.push(chunk));
       res.on('end', () => {
